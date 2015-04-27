@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'plinko'
   spec.version       = Plinko::VERSION
   spec.authors       = ['Mitch Monsen', 'Benjamin Kimball', 'Nathan Davis']
-  spec.email         = ['mitch@creditera.com', 'ben@creditera.com', 'ndavis@creditera.com']
+  spec.email         = ['mmonsen7@gmail.com', 'ben@creditera.com', 'nbriardavis@gmail.com']
   spec.summary       = 'Composable, collected validations.'
   spec.description   = 'Plinko helps you create validators that collect all validation errors instead of breaking on the first failure.'
   spec.homepage      = 'https://github.com/creditera/plinko'
