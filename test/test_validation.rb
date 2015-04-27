@@ -11,6 +11,5 @@ class TestValidation < MiniTest::Test
     validation = Plinko::Validation.new('blarph')
     result = validation.with(EndsInShk)
     assert_equal false, result.valid?
-    assert_equal ["blarph does not end in 'shk'"], result.errors
   end
 end

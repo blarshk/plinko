@@ -11,7 +11,7 @@ module Plinko
     end
 
     def validate
-      if validation.call(value)
+      if validation
         value
       else
         [value, [error_message]]      
@@ -19,7 +19,7 @@ module Plinko
     end
 
     def validation
-      proc { true }
+      true
     end
 
     def error_message
