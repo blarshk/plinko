@@ -3,6 +3,8 @@
 Plinko helps you cascade through several validations of a value and collect all error messages along the way,
 rather than breaking on the first error, as most validation strategies tend to do.
 
+Much credit goes to [this blog post](http://milhouseonsoftware.com/2015/02/08/composable-validations/), which we both took inspiration from, and outright stole, a good portion of the beginning code.
+
 ## Installation
 
 Add this line to your application's Gemfile:
