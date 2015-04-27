@@ -22,13 +22,51 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+First, create a Validator class that inherits from `Plinko::Validator`.
 
-## Development
+```ruby
+class EndsInShk < Plinko::Validator
+  def validation
+    value.end_with?('shk')
+  end
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
+  def error_message
+    "#{value} does not end in 'shk'"
+  end
+end
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Then, toss the value along with the array of validators (one in this case) into `Plinko::MultiValidator`!
+
+```ruby
+string = 'blarshk'
+validator = Plinko::MultiValidator.new(string, [EndsInShk])
+result = validator.validation
+result.valid? # => true
+result.errors # => []
+result.value # => 'blarshk'
+```
+
+Want to cascade through mutliple validators and collect all errors along the way? Here's how!
+
+```ruby
+class StartsWithBlar < Plinko::Validator
+  def validation
+    value.start_with?('blar')
+  end
+
+  def error_message
+    "#{value} does not start with 'blar'"
+  end
+end
+
+string = 'ohhai'
+validator = Plinko::MultiValidator.new(string, [StartsWithBlar, EndsInShk])
+result = validator.validation
+result.valid? # => false
+result.errors # => ["ohhai does not start with 'blar'", "ohhai does not end in 'shk'"]
+result.value # => 'ohhai'
+```
 
 ## Contributing
 
