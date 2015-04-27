@@ -1,8 +1,7 @@
 # Plinko
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/plinko`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Plinko helps you cascade through several validations of a value and collect all error messages along the way,
+rather than breaking on the first error, as most validation strategies tend to do.
 
 ## Installation
 
@@ -42,6 +41,7 @@ Then, toss the value along with the array of validators (one in this case) into 
 string = 'blarshk'
 validator = Plinko::MultiValidator.new(string, [EndsInShk])
 result = validator.validation
+
 result.valid? # => true
 result.errors # => []
 result.value # => 'blarshk'
@@ -63,6 +63,7 @@ end
 string = 'ohhai'
 validator = Plinko::MultiValidator.new(string, [StartsWithBlar, EndsInShk])
 result = validator.validation
+
 result.valid? # => false
 result.errors # => ["ohhai does not start with 'blar'", "ohhai does not end in 'shk'"]
 result.value # => 'ohhai'
